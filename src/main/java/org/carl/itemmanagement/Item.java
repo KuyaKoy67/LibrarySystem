@@ -21,6 +21,6 @@ public abstract class Item {
     }
 
     public enum Status {
-        ROMANCE, THRILLER, SCI_FI, FANTASY, MYSTERY, BIOGRAPHY, SELF_HELP, HISTORY
+        BORROWED, IN_STORE, LOST
     }
 }
