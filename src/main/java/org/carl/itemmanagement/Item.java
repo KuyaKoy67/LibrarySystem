@@ -19,4 +19,8 @@ public abstract class Item {
         this.itemId = String.format("%04d", nextId++);
         this.status = status;
     }
+
+    public enum Status {
+        ROMANCE, THRILLER, SCI_FI, FANTASY, MYSTERY, BIOGRAPHY, SELF_HELP, HISTORY
+    }
 }
