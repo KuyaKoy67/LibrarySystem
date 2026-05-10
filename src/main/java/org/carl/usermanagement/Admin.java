@@ -1,4 +1,7 @@
 package org.carl.usermanagement;
 
-public class Admin {
+import org.carl.other.Reportable;
+
+public class Admin implements Reportable {
+
 }

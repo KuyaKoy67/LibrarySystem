@@ -1,4 +1,8 @@
 package org.carl.itemmanagement;
 
-public class Item {
+public abstract class Item {
+    protected String itemId;
+    protected Status status;
+
+    private static int nextId = 1;
 }
