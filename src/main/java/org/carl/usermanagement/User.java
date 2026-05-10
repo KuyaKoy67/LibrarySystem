@@ -1,9 +1,17 @@
 package org.carl.usermanagement;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.carl.itemmanagement.Item;
 
 import java.util.List;
 
+@EqualsAndHashCode
+@ToString
+@Setter
+@Getter
 public abstract class User {
     protected String userId;
     protected String name;
@@ -11,4 +19,11 @@ public abstract class User {
     protected Gender gender;
 
     private static int nextId = 1;
+
+    public User(String userId, String name, List<Item> borrowedItems, Gender gender) {
+        this.userId = String.format("%04d", nextId++);
+        this.name = name;
+        this.borrowedItems = borrowedItems;
+        this.gender = gender;
+    }
 }
