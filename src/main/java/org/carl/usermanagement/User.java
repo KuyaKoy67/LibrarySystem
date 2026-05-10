@@ -26,4 +26,8 @@ public abstract class User {
         this.borrowedItems = borrowedItems;
         this.gender = gender;
     }
+
+    public enum Gender {
+        MALE, FEMALE
+    }
 }
