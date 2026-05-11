@@ -45,4 +45,28 @@ public class Student extends User {
             return false;
         }
     }
+
+    /**
+     * returns an item of a student. This method checks if the item is borrowed already
+     * and if the item to be returned is in the student's list of borrowed items
+     * @param item the item to be returned
+     * @return the boolean value to indicate if the operation was successful
+     */
+    @Override
+    public boolean returnItem(Item item) {
+        if (item.getStatus() == Item.Status.BORROWED) {
+            if (!this.borrowedItems.contains(item)) {
+                System.out.println("Item cannot be returned. It is not in the student's" +
+                        "list");
+                return false;
+            }
+            item.setStatus(Item.Status.IN_STORE);
+            borrowedItems.remove(item);
+            return true;
+
+        } else {
+            System.out.println("Item is not borrowed.");
+            return false;
+        }
+    }
 }
