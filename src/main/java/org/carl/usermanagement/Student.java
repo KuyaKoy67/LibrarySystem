@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.carl.itemmanagement.Book;
 import org.carl.itemmanagement.Item;
 import org.carl.other.Constants;
 
@@ -29,14 +30,16 @@ public class Student extends User {
      */
     @Override
     public boolean borrowItem(Item item) {
-        if (item.getStatus() == Item.Status.IN_STORE) {
+        if (item.getStatus() == Item.Status.IN_STORE && borrowedItems.size() > this.borrowingLimit) {
             if (this.borrowedItems.contains(item) && !(item instanceof Book)) {
                 System.out.println("Item cannot be borrowed. Check if it is already in " +
                         "your student's list, or if it is a book");
                 return false;
             }
+            item.setStatus(Item.Status.BORROWED);
             borrowedItems.add(item);
             return true;
+
         } else {
             System.out.println("Item has already been borrowed");
             return false;
