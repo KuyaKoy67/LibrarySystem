@@ -30,4 +30,12 @@ public abstract class User {
     public enum Gender {
         MALE, FEMALE
     }
+
+    public abstract boolean borrowItem(Item item);
+
+    public abstract boolean returnItem(Item item);
+
+    public abstract String searchItem(String query);
+
+
 }
