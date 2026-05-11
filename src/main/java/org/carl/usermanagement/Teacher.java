@@ -38,4 +38,22 @@ public class Teacher extends User {
         borrowedItems.add(item);
         return true;
     }
+
+    /**
+     * returns an item as a teacher.
+     * @param item the item to be returned
+     * @return the boolean value that determines if the item has been successfully
+     * returned
+     */
+    @Override
+    public boolean returnItem(Item item) {
+        if (!this.borrowedItems.contains(item) && item.getStatus() == Item.Status.BORROWED) {
+            System.out.println("This item was not borrowed");
+            return false;
+        }
+
+        item.setStatus(Item.Status.IN_STORE);
+        borrowedItems.remove(item);
+        return true;
+    }
 }
