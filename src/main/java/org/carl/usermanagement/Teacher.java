@@ -20,4 +20,22 @@ public class Teacher extends User {
         super(userId, name, borrowedItems, gender);
         this.borrowingLimit = Constants.MAX_ITEMS_TEACHER;
     }
+
+    /**
+     * borrows an item as a teacher.
+     * @param item the item to be borrowed
+     * @return the boolean value that determines if the item has been successfully
+     * borrowed
+     */
+    @Override
+    public boolean borrowItem(Item item) {
+        if (this.borrowedItems.contains(item) && item.getStatus() == Item.Status.IN_STORE) {
+            System.out.println("This item has already been borrowed");
+            return false;
+        }
+
+        item.setStatus(Item.Status.BORROWED);
+        borrowedItems.add(item);
+        return true;
+    }
 }
