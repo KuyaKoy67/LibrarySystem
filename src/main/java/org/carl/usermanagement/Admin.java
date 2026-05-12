@@ -1,6 +1,9 @@
 package org.carl.usermanagement;
 
+import org.carl.itemmanagement.Item;
 import org.carl.other.Reportable;
+
+import java.util.List;
 
 public class Admin implements Reportable {
 

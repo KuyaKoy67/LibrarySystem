@@ -4,10 +4,7 @@ import lombok.*;
 import org.carl.itemmanagement.Item;
 import org.carl.usermanagement.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 @EqualsAndHashCode
 @ToString
