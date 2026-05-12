@@ -69,4 +69,22 @@ public class Student extends User {
             return false;
         }
     }
+
+    /**
+     * searches an item in the list of a student
+     * @param query the string query
+     * @return the item. If the item is not detected, the method returns null.
+     */
+    @Override
+    public Item searchItem(String query) {
+        for (Item item : borrowedItems) {
+            if (((Book) item).getTitle().equals(query)) {
+                return item;
+            } else if (((Book) item).getAuthor().equals(query)) {
+                return item;
+            }
+        }
+
+        return null;
+    }
 }
