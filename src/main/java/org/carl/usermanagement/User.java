@@ -35,7 +35,9 @@ public abstract class User {
 
     public abstract boolean returnItem(Item item);
 
-    public abstract String searchItem(String query);
+    public abstract String recursiveSearchItem(String query);
+
+    public abstract String streamSearchItem(String query);
 
 
 }
