@@ -30,12 +30,14 @@ public class Teacher extends User {
     @Override
     public boolean borrowItem(Item item) {
         if (this.borrowedItems.contains(item) && item.getStatus() == Item.Status.IN_STORE) {
-            System.out.println("This item has already been borrowed");
-            return false;
+            if (this.borrowingLimit <= this.borrowedItems.size()) {
+                System.out.println("This item has already been borrowed, or the limit has been surpassed");
+                return false;
+            }
+        } else {
+            item.setStatus(Item.Status.BORROWED);
+            borrowedItems.add(item);
         }
-
-        item.setStatus(Item.Status.BORROWED);
-        borrowedItems.add(item);
         return true;
     }
 
