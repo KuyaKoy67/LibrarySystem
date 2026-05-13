@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Comparator;
+
 @EqualsAndHashCode
 @ToString
 @Setter
@@ -20,6 +22,20 @@ public abstract class Item {
         this.itemId = String.format("%04d", nextId++);
         this.status = status;
         this.title = title;
+    }
+
+    public static class ById implements Comparator<Item> {
+        @Override
+        public int compare(Item i1, Item i2) {
+            return i1.getItemId().compareTo(i2.getItemId());
+        }
+    }
+
+    public static class ByTitle implements Comparator<Item> {
+        @Override
+        public int compare(Item i1, Item i2) {
+            return i1.getTitle().compareToIgnoreCase(i2.getTitle());
+        }
     }
 
     public enum Status {

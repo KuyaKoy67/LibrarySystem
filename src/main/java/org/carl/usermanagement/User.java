@@ -8,6 +8,7 @@ import org.carl.itemmanagement.Item;
 import org.carl.other.Validation;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @EqualsAndHashCode
@@ -27,6 +28,20 @@ public abstract class User {
         this.name = Validation.isValidName(name) ? name : null;
         this.borrowedItems = new ArrayList<>();
         this.gender = gender;
+    }
+
+    public static class ById implements Comparator<User> {
+        @Override
+        public int compare(User u1, User u2) {
+            return u1.getUserId().compareTo(u2.getUserId());
+        }
+    }
+
+    public static class ByName implements Comparator<User> {
+        @Override
+        public int compare(User u1, User u2) {
+            return u1.getName().compareToIgnoreCase(u2.getName());
+        }
     }
 
     public abstract boolean borrowItem(Item item);
