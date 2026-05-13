@@ -185,6 +185,15 @@ public class Library {
 
     }
 
+    private Item findItemById(String id) {
+        for (Item item : this.items) {
+            if (item.getItemId().equalsIgnoreCase(id)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
     /**
      * helper method that checks the status of the item and converts the string to Item.Status
      * @param status the string status
