@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.carl.other.Validation;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
@@ -15,9 +16,9 @@ public class Book extends Item {
     private String author;
     private Genre genre;
 
-    public Book(String itemId, Status status, String ISBN, String title, String author, Genre genre) {
+    public Book(String itemId, Status status, String title, String ISBN, String author, Genre genre) {
         super(itemId, status, title);
-        this.ISBN = ISBN;
+        this.ISBN = Validation.isValidISBN(ISBN) ? ISBN : null;
         this.author = author;
         this.genre = genre;
     }
