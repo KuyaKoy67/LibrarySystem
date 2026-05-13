@@ -16,9 +16,8 @@ public class Book extends Item {
     private Genre genre;
 
     public Book(String itemId, Status status, String ISBN, String title, String author, Genre genre) {
-        super(itemId, status);
+        super(itemId, status, title);
         this.ISBN = ISBN;
-        this.title = title;
         this.author = author;
         this.genre = genre;
     }
