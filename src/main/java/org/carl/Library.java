@@ -11,6 +11,7 @@ import org.carl.usermanagement.User;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @EqualsAndHashCode
 @ToString
@@ -142,12 +143,12 @@ public class Library {
 
                 String itemType = infos[2];
 
-                String ISBN; String title; String author; String genre;
+                int ISBN; String title; String author; String genre;
                 int issueNumber; String publisher; String director; int durationMinutes;
                 switch (itemType) {
                     case "BOOK" -> {
                         title = infos[3];
-                        ISBN = infos[4];
+                        ISBN = Integer.parseInt(infos[4]);
                         author = infos[5];
                         genre = infos[6];
                         this.items.add(new Book(id, status, title, ISBN, author, convertGenre(genre)));
