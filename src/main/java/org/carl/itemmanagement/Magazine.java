@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.carl.other.Validation;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
@@ -16,7 +17,7 @@ public class Magazine extends Item {
 
     public Magazine(String itemId, Status status, String title, int issueNumber, String publisher) {
         super(itemId, status, title);
-        this.issueNumber = issueNumber;
+        this.issueNumber = Validation.isValidIssueNumber(issueNumber) ? issueNumber : -1;
         this.publisher = publisher;
     }
 }

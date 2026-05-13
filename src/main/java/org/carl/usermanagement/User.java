@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.carl.itemmanagement.Item;
+import org.carl.other.Validation;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public abstract class User {
 
     public User(String userId, String name, List<Item> borrowedItems, Gender gender) {
         this.userId = String.format("%04d", nextId++);
-        this.name = name;
+        this.name = Validation.isValidName(name) ? name : null;
         this.borrowedItems = borrowedItems;
         this.gender = gender;
     }
