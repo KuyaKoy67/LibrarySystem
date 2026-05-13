@@ -48,4 +48,100 @@ public class Library {
         item.setStatus(null);
         return true;
     }
+
+    /**
+     * loads the data coming from the items.csv and users.csv files
+     */
+    public void loadData() {
+        File itemFile = new File(Constants.BOOKS_CSV_PATH);
+
+        try (Scanner input = new Scanner(itemFile)) {
+            while (input.hasNext()) {
+                String row = input.nextLine();
+                String[] infos = row.split(",");
+                String id = infos[0];
+                String statusSTR = infos[1];
+                Item.Status status = convertStatus(statusSTR);
+
+                String itemType = infos[2];
+
+                String ISBN; String title; String author; String genre;
+                int issueNumber; String publisher; String director; int durationMinutes;
+                switch (itemType) {
+                    case "BOOK" -> {
+                        ISBN = infos[3];
+                        title = infos[4];
+                        author = infos[5];
+                        genre = infos[6];
+                        this.items.add(new Book(id, status, title, ISBN, author, convertGenre(genre)));
+                    }
+                    case "MAGAZINE" -> {
+                        title = infos[3];
+                        issueNumber = Integer.parseInt(infos[4]);
+                        publisher = infos[5];
+                        this.items.add(new Magazine(id, status, title, issueNumber, publisher));
+                    }
+                    case "DVD" -> {
+                        title = infos[3];
+                        director = infos[4];
+                        durationMinutes = Integer.parseInt(infos[5]);
+                        this.items.add(new DVD(id, status, title, director, durationMinutes));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.printf(String.format("File %s does not exist", Constants.BOOKS_CSV_PATH));
+        }
+
+        File userFile = new File(Constants.USERS_CSV_PATH);
+
+        try (Scanner input = new Scanner(userFile)) {
+            while (input.hasNext()) {
+                String row = input.nextLine();
+                String[] infos = row.split(",");
+
+            }
+        } catch (IOException e) {
+            System.out.printf(String.format("File %s does not exist", Constants.BOOKS_CSV_PATH));
+        }
+
+    }
+
+    /**
+     * helper method that checks the status of the item and converts the string to Item.Status
+     * @param status the string status
+     * @return the Item.Status value
+     */
+    private Item.Status convertStatus(String status) {
+        if (status == null) {
+            return null;
+        }
+
+        return switch (status.toUpperCase()) {
+            case "BORROWED" -> Item.Status.BORROWED;
+            case "IN_STORE" -> Item.Status.IN_STORE;
+            case "LOST" -> Item.Status.LOST;
+            default -> null;
+        };
+    }
+
+    /**
+     * helper method that checks the genre of the item and converts the string to Book.Genre
+     * @param genre the string genre
+     * @return the Book.Genre value
+     */
+    private Book.Genre convertGenre(String genre) {
+        if (genre == null) {
+            return null;
+        }
+
+        return switch (genre.toUpperCase()) {
+            case "ROMANCE" -> Book.Genre.ROMANCE;
+            case "FANTASY" -> Book.Genre.FANTASY;
+            case "MYSTERY" -> Book.Genre.MYSTERY;
+            case "SELF_HELP" -> Book.Genre.SELF_HELP;
+            default -> null;
+        };
+    }
+
 }
