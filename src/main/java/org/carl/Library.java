@@ -56,6 +56,46 @@ public class Library {
     }
 
     /**
+     * This method searches an item using a query using streams. It returns a list of items
+     * that are being looked for
+     * @param query the String query
+     * @return the list of searched items
+     */
+    public List<Item> searchStream(String query) {
+        if (query == null || query.isEmpty()) return new ArrayList<>();
+
+        String q = query.toLowerCase().trim();
+
+        return this.items.stream()
+                .filter(item -> {
+                    if (item.getTitle().toLowerCase().contains(q)) {
+                        return true;
+                    }
+
+                    if (item instanceof Book) {
+                        Book b = (Book) item;
+                        return b.getAuthor().toLowerCase().contains(q) ||
+                                b.getISBN().contains(q);
+                    }
+
+                    if (item instanceof Magazine) {
+                        Magazine m = (Magazine) item;
+                        return m.getPublisher().toLowerCase().contains(q);
+                    }
+
+                    if (item instanceof DVD) {
+                        DVD d = (DVD) item;
+                        return d.getDirector().toLowerCase().contains(q);
+                    }
+
+                    return false;
+                })
+                .distinct() // can we use distinct?
+                .collect(Collectors.toList());
+    }
+
+    //TODO: finish loadData()
+    /**
      * loads the data coming from the items.csv and users.csv files
      */
     public void loadData() {
