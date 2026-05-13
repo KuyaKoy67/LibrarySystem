@@ -24,7 +24,7 @@ public abstract class User {
     public User(String userId, String name, List<Item> borrowedItems, Gender gender) {
         this.userId = String.format("%04d", nextId++);
         this.name = Validation.isValidName(name) ? name : null;
-        this.borrowedItems = borrowedItems;
+        this.borrowedItems = new ArrayList<>();
         this.gender = gender;
     }
 
