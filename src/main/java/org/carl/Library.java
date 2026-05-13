@@ -129,12 +129,11 @@ public class Library {
                 .collect(Collectors.toList());
     }
 
-    //TODO: finish loadData()
     /**
      * loads the data coming from the items.csv and users.csv files
      */
     public void loadData() {
-        File itemFile = new File(Constants.BOOKS_CSV_PATH);
+        File itemFile = new File(Constants.ITEMS_CSV_PATH);
 
         try (Scanner input = new Scanner(itemFile)) {
             while (input.hasNextLine()) {
@@ -171,7 +170,7 @@ public class Library {
                 }
             }
         } catch (IOException e) {
-            System.out.printf(String.format("File %s does not exist", Constants.BOOKS_CSV_PATH));
+            System.out.printf(String.format("File %s does not exist", Constants.ITEMS_CSV_PATH));
         }
 
         File userFile = new File(Constants.USERS_CSV_PATH);

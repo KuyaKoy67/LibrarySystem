@@ -7,6 +7,7 @@ import lombok.ToString;
 import org.carl.itemmanagement.Item;
 import org.carl.other.Validation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode
@@ -21,7 +22,7 @@ public abstract class User {
 
     private static int nextId = 1;
 
-    public User(String userId, String name, List<Item> borrowedItems, Gender gender) {
+    public User(String userId, String name, Gender gender) {
         this.userId = String.format("%04d", nextId++);
         this.name = Validation.isValidName(name) ? name : null;
         this.borrowedItems = new ArrayList<>();

@@ -5,7 +5,11 @@ import org.carl.other.Reportable;
 
 import java.util.List;
 
-public class Admin implements Reportable {
+public class Admin extends User implements Reportable {
+
+    public Admin(String userId, String name, Gender gender) {
+        super(userId, name, gender);
+    }
 
     @Override
     public void generateReport(List<Item> items) {

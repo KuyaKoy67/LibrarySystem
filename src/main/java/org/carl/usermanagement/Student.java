@@ -17,8 +17,8 @@ import java.util.List;
 public class Student extends User {
     private int borrowingLimit;
 
-    public Student(String userId, String name, List<Item> borrowedItems, Gender gender) {
-        super(userId, name, borrowedItems, gender);
+    public Student(String userId, String name, Gender gender) {
+        super(userId, name, gender);
         this.borrowingLimit = Constants.MAX_BOOKS_STUDENT;
     }
 

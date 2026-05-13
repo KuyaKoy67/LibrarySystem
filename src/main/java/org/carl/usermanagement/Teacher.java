@@ -16,8 +16,8 @@ import java.util.List;
 public class Teacher extends User {
     private int borrowingLimit;
 
-    public Teacher(String userId, String name, List<Item> borrowedItems, Gender gender) {
-        super(userId, name, borrowedItems, gender);
+    public Teacher(String userId, String name, Gender gender) {
+        super(userId, name, gender);
         this.borrowingLimit = Constants.MAX_ITEMS_TEACHER;
     }
 
