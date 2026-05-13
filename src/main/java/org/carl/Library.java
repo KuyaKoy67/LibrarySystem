@@ -6,6 +6,7 @@ import org.carl.itemmanagement.DVD;
 import org.carl.itemmanagement.Item;
 import org.carl.itemmanagement.Magazine;
 import org.carl.other.Constants;
+import org.carl.other.LibraryException;
 import org.carl.usermanagement.Admin;
 import org.carl.usermanagement.Student;
 import org.carl.usermanagement.Teacher;
@@ -16,6 +17,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static org.carl.other.TypeConverter.*;
 
 @EqualsAndHashCode
 @ToString
@@ -33,31 +36,29 @@ public class Library {
     /**
      * adds an item in the library
      * @param item the new item to be added
-     * @return the boolean value which indicates if the operation is successful
      */
-    public boolean addItem(Item item) {
+    public void addItem(Item item) throws LibraryException {
         if (items.contains(item)) {
-            return false;
+            throw new LibraryException("Item is already in library");
         }
 
         items.add(item);
         item.setStatus(Item.Status.IN_STORE);
-        return true;
+        System.out.println("Item successfully added in library");
     }
 
     /**
      * removes an item in the library
      * @param item the new item to be removed
-     * @return the boolean value which indicates if the operation is successful
      */
-    public boolean removeItem(Item item) {
+    public void removeItem(Item item) throws LibraryException {
         if (!items.contains(item)) {
-            return false;
+            throw new LibraryException("Item is not visible in the list");
         }
 
         items.remove(item);
         item.setStatus(null);
-        return true;
+        System.out.println("Item successfully removed from library");
     }
 
     /**
@@ -249,54 +250,5 @@ public class Library {
             }
         }
         return null;
-    }
-
-    private User.Gender convertGender(String gender) {
-        if (gender == null) {
-            return null;
-        }
-
-        return switch (gender.toUpperCase()) {
-            case "MALE" -> User.Gender.MALE;
-            case "FEMALE" -> User.Gender.FEMALE;
-            default -> null;
-        };
-    }
-
-    /**
-     * helper method that checks the status of the item and converts the string to Item.Status
-     * @param status the string status
-     * @return the Item.Status value
-     */
-    private Item.Status convertStatus(String status) {
-        if (status == null) {
-            return null;
-        }
-
-        return switch (status.toUpperCase()) {
-            case "BORROWED" -> Item.Status.BORROWED;
-            case "IN_STORE" -> Item.Status.IN_STORE;
-            case "LOST" -> Item.Status.LOST;
-            default -> null;
-        };
-    }
-
-    /**
-     * helper method that checks the genre of the item and converts the string to Book.Genre
-     * @param genre the string genre
-     * @return the Book.Genre value
-     */
-    private Book.Genre convertGenre(String genre) {
-        if (genre == null) {
-            return null;
-        }
-
-        return switch (genre.toUpperCase()) {
-            case "ROMANCE" -> Book.Genre.ROMANCE;
-            case "FANTASY" -> Book.Genre.FANTASY;
-            case "MYSTERY" -> Book.Genre.MYSTERY;
-            case "SELF_HELP" -> Book.Genre.SELF_HELP;
-            default -> null;
-        };
     }
 }
