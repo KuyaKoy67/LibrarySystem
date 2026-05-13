@@ -115,8 +115,8 @@ public class Library {
                 int issueNumber; String publisher; String director; int durationMinutes;
                 switch (itemType) {
                     case "BOOK" -> {
-                        ISBN = infos[3];
-                        title = infos[4];
+                        title = infos[3];
+                        ISBN = infos[4];
                         author = infos[5];
                         genre = infos[6];
                         this.items.add(new Book(id, status, title, ISBN, author, convertGenre(genre)));
