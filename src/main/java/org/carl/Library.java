@@ -1,9 +1,15 @@
 package org.carl;
 
 import lombok.*;
+import org.carl.itemmanagement.Book;
+import org.carl.itemmanagement.DVD;
 import org.carl.itemmanagement.Item;
+import org.carl.itemmanagement.Magazine;
+import org.carl.other.Constants;
 import org.carl.usermanagement.User;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 @EqualsAndHashCode
