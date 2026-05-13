@@ -188,9 +188,9 @@ public class Library {
 
                 User currentUser;
                 switch (userType) {
-                    case "STUDENT" -> currentUser = new Student(userId, name, gender);
-                    case "TEACHER" -> currentUser = new Teacher(userId, name, gender);
-                    case "ADMIN"   -> currentUser = new Admin(userId, name, gender);
+                    case "STUDENT" -> currentUser = new Student(name, gender);
+                    case "TEACHER" -> currentUser = new Teacher(name, gender);
+                    case "ADMIN"   -> currentUser = new Admin(name, gender);
                     default        -> currentUser = null;
                 }
 
