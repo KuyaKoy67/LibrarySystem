@@ -14,18 +14,21 @@ public class Admin implements Reportable {
         System.out.println("BORROWED ITEMS:");
         List<Item> borrowedItems = items.stream().
                 filter((item) -> item.getStatus() == Item.Status.BORROWED)
+                .distinct()
                 .toList();
         System.out.println(borrowedItems);
 
         System.out.println("\nIN STORE ITEMS:");
         List<Item> inStoreItems = items.stream().
                 filter((item) -> item.getStatus() == Item.Status.IN_STORE)
+                .distinct()
                 .toList();
         System.out.println(inStoreItems);
 
         System.out.println("\nLOST ITEMS:");
         List<Item> lostItems = items.stream().
                 filter((item) -> item.getStatus() == Item.Status.LOST)
+                .distinct()
                 .toList();
         System.out.println(lostItems);
     }
