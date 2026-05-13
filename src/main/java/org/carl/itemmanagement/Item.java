@@ -38,9 +38,9 @@ public abstract class Item {
         }
     }
 
+    public abstract String toCSV();
+
     public enum Status {
         BORROWED, IN_STORE, LOST
     }
-
-    public abstract String toCSV();
 }

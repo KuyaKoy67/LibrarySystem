@@ -1,6 +1,5 @@
 package org.carl.usermanagement;
 
-import org.carl.itemmanagement.Book;
 import org.carl.itemmanagement.Item;
 import org.carl.other.LibraryException;
 import org.carl.other.Reportable;

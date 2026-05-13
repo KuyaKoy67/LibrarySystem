@@ -68,5 +68,4 @@ public abstract class User {
     public enum Gender {
         MALE, FEMALE
     }
-
 }
