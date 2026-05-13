@@ -56,6 +56,37 @@ public class Library {
     }
 
     /**
+     * This method searches an item using a query using recursion. It returns a list of items
+     * that are being looked for
+     * @param query the string query
+     * @param index the int index
+     * @param results the temporary results
+     * @return the list of items looked for
+     */
+    public List<Item> searchRecursive(String query, int index, List<Item> results) {
+        if (index >= this.items.size()) {
+            return results;
+        }
+
+        Item current = this.items.get(index);
+        String q = query.toLowerCase();
+
+        boolean isMatching = current.getTitle().toLowerCase().contains(q);
+
+        if (!isMatching && current instanceof Book) {
+            isMatching = ((Book) current).getAuthor().toLowerCase().contains(q);
+        } else if (!isMatching && current instanceof DVD) {
+            isMatching = ((DVD) current).getDirector().toLowerCase().contains(q);
+        }
+
+        if (isMatching) {
+            results.add(current);
+        }
+
+        return searchRecursive(query, index + 1, results);
+    }
+
+    /**
      * This method searches an item using a query using streams. It returns a list of items
      * that are being looked for
      * @param query the String query
