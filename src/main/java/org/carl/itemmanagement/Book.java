@@ -24,6 +24,6 @@ public class Book extends Item {
     }
 
     public enum Genre {
-        ROMANCE, THRILLER, SCI_FI, FANTASY, MYSTERY, BIOGRAPHY, SELF_HELP, HISTORY
+        ROMANCE, FANTASY, MYSTERY, SELF_HELP
     }
 }
