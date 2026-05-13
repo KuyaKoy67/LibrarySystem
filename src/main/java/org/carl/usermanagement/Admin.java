@@ -13,6 +13,10 @@ public class Admin extends User implements Reportable {
         super(name, gender);
     }
 
+    /**
+     * generates a report (exclusively for admins) that shows every item and its status
+     * @param items the list of items that will be checked
+     */
     @Override
     public void generateReport(List<Item> items) {
         System.out.println("LIBRARY STATUS REPORT\n");
@@ -39,6 +43,10 @@ public class Admin extends User implements Reportable {
         System.out.println(lostItems);
     }
 
+    /**
+     * borrows an item as an admin.
+     * @param item the item to be borrowed
+     */
     @Override
     public void borrowItem(Item item) throws LibraryException {
         if (item.getStatus() != Item.Status.IN_STORE) {
@@ -49,6 +57,10 @@ public class Admin extends User implements Reportable {
         borrowedItems.add(item);
     }
 
+    /**
+     * returned an item as an admin.
+     * @param item the item to be returned
+     */
     @Override
     public void returnItem(Item item) throws LibraryException {
         if (!this.borrowedItems.contains(item)) {
@@ -59,6 +71,10 @@ public class Admin extends User implements Reportable {
         borrowedItems.remove(item);
     }
 
+    /**
+     * converts information to CSV format
+     * @return a string of information in CSV format
+     */
     @Override
     public String toCSV() {
         return userId + "," + name + ",ADMIN," + gender + "," +

@@ -20,6 +20,10 @@ public class DVD extends Item {
         this.durationMinutes = durationMinutes;
     }
 
+    /**
+     * converts information to CSV format
+     * @return a string of information in CSV format
+     */
     @Override
     public String toCSV() {
         return itemId + "," + status + ",DVD," + title + "," +

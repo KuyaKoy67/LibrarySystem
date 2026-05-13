@@ -213,6 +213,9 @@ public class Library {
         }
     }
 
+    /**
+     * updates the files by adding all new information
+     */
     public void backupData() {
         try {
             FileWriter itemWriter = new FileWriter(Constants.ITEMS_CSV_PATH);
@@ -234,6 +237,11 @@ public class Library {
         }
     }
 
+    /**
+     * helper method that finds an item when it receives its id
+     * @param id the id of an item
+     * @return the item
+     */
     private Item findItemById(String id) {
         for (Item item : this.items) {
             if (item.getItemId().equalsIgnoreCase(id)) {

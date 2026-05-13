@@ -21,6 +21,10 @@ public class Magazine extends Item {
         this.publisher = publisher;
     }
 
+    /**
+     * converts information to CSV format
+     * @return a string of information in CSV format
+     */
     @Override
     public String toCSV() {
         return getItemId() + "," + getStatus() + ",MAGAZINE," + getTitle() + "," + issueNumber + "," + publisher;

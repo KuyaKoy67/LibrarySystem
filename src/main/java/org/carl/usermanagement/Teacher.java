@@ -54,6 +54,10 @@ public class Teacher extends User {
         borrowedItems.remove(item);
     }
 
+    /**
+     * converts information to CSV format
+     * @return a string of information in CSV format
+     */
     @Override
     public String toCSV() {
         return userId + "," + name + ",TEACHER," + gender + "," +

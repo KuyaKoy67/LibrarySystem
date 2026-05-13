@@ -51,6 +51,10 @@ public abstract class User {
 
     public abstract String toCSV();
 
+    /**
+     * helper method converts the borrowed items ids as a string
+     * @return the converted string
+     */
     public String getBorrowedIdsAsString() {
         if (borrowedItems == null || borrowedItems.isEmpty()) return "";
         String ids = "";

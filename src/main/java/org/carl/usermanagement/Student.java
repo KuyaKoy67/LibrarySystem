@@ -23,10 +23,9 @@ public class Student extends User {
     }
 
     /**
-     * method that borrows an item for a student. It has two conditions: it must
-     * be unique (different ids) and the item must be a book
+     * borrows item as a student
      * @param item the item to be borrowed
-     * @return the boolean value that shows the
+     * @throws LibraryException the library exception
      */
     @Override
     public void borrowItem(Item item) throws LibraryException {
@@ -47,9 +46,9 @@ public class Student extends User {
     }
 
     /**
-     * returns an item of a student. This method checks if the item is borrowed already
-     * and if the item to be returned is in the student's list of borrowed items
+     * returns the item as a student
      * @param item the item to be returned
+     * @throws LibraryException the library exception
      */
     @Override
     public void returnItem(Item item) throws LibraryException {
@@ -61,6 +60,10 @@ public class Student extends User {
         borrowedItems.remove(item);
     }
 
+    /**
+     * converts information to CSV format
+     * @return a string of information in CSV format
+     */
     @Override
     public String toCSV() {
         return userId + "," + name + ",STUDENT," + gender + "," +
