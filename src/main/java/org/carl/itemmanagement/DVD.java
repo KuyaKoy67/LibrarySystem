@@ -22,7 +22,6 @@ public class DVD extends Item {
 
     @Override
     public String toCSV() {
-        // DVDs leave isbn, author, and genre empty
         return itemId + "," + status + ",DVD," + title + "," +
                 director + "," + durationMinutes;
     }

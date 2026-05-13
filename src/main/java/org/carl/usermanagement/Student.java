@@ -8,7 +8,6 @@ import org.carl.itemmanagement.Book;
 import org.carl.itemmanagement.Item;
 import org.carl.other.Constants;
 
-import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
@@ -70,11 +69,6 @@ public class Student extends User {
         }
     }
 
-    /**
-     * searches an item in the list of a student
-     * @param query the string query
-     * @return the item. If the item is not detected, the method returns null.
-     */
     @Override
     public String toCSV() {
         return userId + "," + name + ",STUDENT," + gender + "," +

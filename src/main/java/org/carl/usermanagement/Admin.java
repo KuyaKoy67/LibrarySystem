@@ -1,5 +1,6 @@
 package org.carl.usermanagement;
 
+import org.carl.itemmanagement.Book;
 import org.carl.itemmanagement.Item;
 import org.carl.other.Reportable;
 
@@ -7,8 +8,8 @@ import java.util.List;
 
 public class Admin extends User implements Reportable {
 
-    public Admin(String userId, String name, Gender gender) {
-        super(userId, name, gender);
+    public Admin(String name, Gender gender) {
+        super(name, gender);
     }
 
     @Override

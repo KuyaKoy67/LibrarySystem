@@ -22,7 +22,7 @@ public abstract class User {
 
     private static int nextId = 1;
 
-   public User(String name, Gender gender) {
+    public User(String name, Gender gender) {
         this.userId = String.format("%04d", nextId++);
         this.name = Validation.isValidName(name) ? name : null;
         this.borrowedItems = new ArrayList<>();
@@ -48,13 +48,5 @@ public abstract class User {
     public enum Gender {
         MALE, FEMALE
     }
-
-    public abstract boolean borrowItem(Item item);
-
-    public abstract boolean returnItem(Item item);
-
-    public abstract Item searchItem(String query);
-
-
 
 }
