@@ -6,6 +6,9 @@ import org.carl.itemmanagement.DVD;
 import org.carl.itemmanagement.Item;
 import org.carl.itemmanagement.Magazine;
 import org.carl.other.Constants;
+import org.carl.usermanagement.Admin;
+import org.carl.usermanagement.Student;
+import org.carl.usermanagement.Teacher;
 import org.carl.usermanagement.User;
 
 import java.io.File;
@@ -134,7 +137,7 @@ public class Library {
         File itemFile = new File(Constants.BOOKS_CSV_PATH);
 
         try (Scanner input = new Scanner(itemFile)) {
-            while (input.hasNext()) {
+            while (input.hasNextLine()) {
                 String row = input.nextLine();
                 String[] infos = row.split(",");
                 String id = infos[0];
@@ -143,12 +146,12 @@ public class Library {
 
                 String itemType = infos[2];
 
-                int ISBN; String title; String author; String genre;
+                String ISBN; String title; String author; String genre;
                 int issueNumber; String publisher; String director; int durationMinutes;
                 switch (itemType) {
                     case "BOOK" -> {
                         title = infos[3];
-                        ISBN = Integer.parseInt(infos[4]);
+                        ISBN = infos[4];
                         author = infos[5];
                         genre = infos[6];
                         this.items.add(new Book(id, status, title, ISBN, author, convertGenre(genre)));
@@ -174,15 +177,40 @@ public class Library {
         File userFile = new File(Constants.USERS_CSV_PATH);
 
         try (Scanner input = new Scanner(userFile)) {
-            while (input.hasNext()) {
+            while (input.hasNextLine()) {
                 String row = input.nextLine();
                 String[] infos = row.split(",");
+                String userId = infos[0];
+                String name = infos[1];
+                String userType = infos[2];
+                User.Gender gender = convertGender(infos[3]);
+                String borrowedItemsIds = infos[4];
 
+                User currentUser;
+                switch (userType) {
+                    case "STUDENT" -> currentUser = new Student(userId, name, gender);
+                    case "TEACHER" -> currentUser = new Teacher(userId, name, gender);
+                    case "ADMIN"   -> currentUser = new Admin(userId, name, gender);
+                    default        -> currentUser = null;
+                }
+
+                if (borrowedItemsIds != null && !borrowedItemsIds.isEmpty()) {
+                    String[] idArray = borrowedItemsIds.split(";");
+
+                    for (String itemId : idArray) {
+                        Item foundItem = findItemById(itemId);
+
+                        if (foundItem != null) {
+                            currentUser.getBorrowedItems().add(foundItem);
+                        }
+                    }
+                }
+
+                this.users.put(userId, currentUser);
             }
         } catch (IOException e) {
-            System.out.printf(String.format("File %s does not exist", Constants.BOOKS_CSV_PATH));
+            System.out.printf(String.format("File %s does not exist", Constants.USERS_CSV_PATH));
         }
-
     }
 
     private Item findItemById(String id) {
@@ -242,5 +270,4 @@ public class Library {
             default -> null;
         };
     }
-
 }
