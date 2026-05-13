@@ -12,6 +12,7 @@ import org.carl.usermanagement.Teacher;
 import org.carl.usermanagement.User;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -153,19 +154,19 @@ public class Library {
                         ISBN = infos[4];
                         author = infos[5];
                         genre = infos[6];
-                        this.items.add(new Book(id, status, title, ISBN, author, convertGenre(genre)));
+                        this.items.add(new Book(status, title, ISBN, author, convertGenre(genre)));
                     }
                     case "MAGAZINE" -> {
                         title = infos[3];
                         issueNumber = Integer.parseInt(infos[4]);
                         publisher = infos[5];
-                        this.items.add(new Magazine(id, status, title, issueNumber, publisher));
+                        this.items.add(new Magazine(status, title, issueNumber, publisher));
                     }
                     case "DVD" -> {
                         title = infos[3];
                         director = infos[4];
                         durationMinutes = Integer.parseInt(infos[5]);
-                        this.items.add(new DVD(id, status, title, director, durationMinutes));
+                        this.items.add(new DVD(status, title, director, durationMinutes));
                     }
                 }
             }
@@ -209,6 +210,27 @@ public class Library {
             }
         } catch (IOException e) {
             System.out.printf(String.format("File %s does not exist", Constants.USERS_CSV_PATH));
+        }
+    }
+
+    public void backupData() {
+        try {
+            FileWriter itemWriter = new FileWriter(Constants.ITEMS_CSV_PATH);
+            for (Item item : this.items) {
+                itemWriter.write(item.toCSV() + "\n");
+            }
+            itemWriter.close();
+
+            FileWriter userWriter = new FileWriter(Constants.USERS_CSV_PATH);
+            for (User user : this.users.values()) {
+                userWriter.write(user.toCSV() + "\n");
+            }
+            userWriter.close();
+
+            System.out.println("Library data successfully backed up to CSV files.");
+
+        } catch (IOException e) {
+            System.out.println("Critical Error: Data backup failed. " + e.getMessage());
         }
     }
 

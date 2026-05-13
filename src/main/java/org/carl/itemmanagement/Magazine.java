@@ -15,9 +15,14 @@ public class Magazine extends Item {
     private int issueNumber;
     private String publisher;
 
-    public Magazine(String itemId, Status status, String title, int issueNumber, String publisher) {
-        super(itemId, status, title);
+    public Magazine(Status status, String title, int issueNumber, String publisher) {
+        super(status, title);
         this.issueNumber = Validation.isValidIssueNumber(issueNumber) ? issueNumber : -1;
         this.publisher = publisher;
+    }
+
+    @Override
+    public String toCSV() {
+        return getItemId() + "," + getStatus() + ",MAGAZINE," + getTitle() + "," + issueNumber + "," + publisher;
     }
 }

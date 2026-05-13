@@ -16,8 +16,8 @@ import java.util.List;
 public class Teacher extends User {
     private int borrowingLimit;
 
-    public Teacher(String userId, String name, Gender gender) {
-        super(userId, name, gender);
+    public Teacher(String name, Gender gender) {
+        super(name, gender);
         this.borrowingLimit = Constants.MAX_ITEMS_TEACHER;
     }
 
@@ -57,5 +57,11 @@ public class Teacher extends User {
         item.setStatus(Item.Status.IN_STORE);
         borrowedItems.remove(item);
         return true;
+    }
+
+    @Override
+    public String toCSV() {
+        return userId + "," + name + ",TEACHER," + gender + "," +
+                getBorrowedIdsAsString();
     }
 }

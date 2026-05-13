@@ -16,11 +16,17 @@ public class Book extends Item {
     private String author;
     private Genre genre;
 
-    public Book(String itemId, Status status, String title, String ISBN, String author, Genre genre) {
-        super(itemId, status, title);
+    public Book(Status status, String title, String ISBN, String author, Genre genre) {
+        super(status, title);
         this.ISBN = Validation.isValidISBN(ISBN) ? ISBN : null;
         this.author = author;
         this.genre = genre;
+    }
+
+    @Override
+    public String toCSV() {
+        return itemId + "," + status + ",BOOK," + ISBN + "," + title + "," +
+                author + "," + genre;
     }
 
     public enum Genre {

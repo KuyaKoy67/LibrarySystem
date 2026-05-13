@@ -16,7 +16,7 @@ public abstract class Item {
 
     private static int nextId = 1;
 
-    public Item(String itemId, Status status, String title) {
+    public Item(Status status, String title) {
         this.itemId = String.format("%04d", nextId++);
         this.status = status;
         this.title = title;
@@ -25,4 +25,6 @@ public abstract class Item {
     public enum Status {
         BORROWED, IN_STORE, LOST
     }
+
+    public abstract String toCSV();
 }

@@ -17,8 +17,8 @@ import java.util.List;
 public class Student extends User {
     private int borrowingLimit;
 
-    public Student(String userId, String name, Gender gender) {
-        super(userId, name, gender);
+    public Student(String name, Gender gender) {
+        super(name, gender);
         this.borrowingLimit = Constants.MAX_BOOKS_STUDENT;
     }
 
@@ -76,15 +76,8 @@ public class Student extends User {
      * @return the item. If the item is not detected, the method returns null.
      */
     @Override
-    public Item searchItem(String query) {
-        for (Item item : borrowedItems) {
-            if (((Book) item).getTitle().equals(query)) {
-                return item;
-            } else if (((Book) item).getAuthor().equals(query)) {
-                return item;
-            }
-        }
-
-        return null;
+    public String toCSV() {
+        return userId + "," + name + ",STUDENT," + gender + "," +
+                getBorrowedIdsAsString();
     }
 }

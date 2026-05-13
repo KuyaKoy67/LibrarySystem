@@ -14,9 +14,16 @@ public class DVD extends Item {
     private String director;
     private int durationMinutes;
 
-    public DVD(String itemId, Status status, String title, String director, int durationMinutes) {
-        super(itemId, status, title);
+    public DVD(Status status, String title, String director, int durationMinutes) {
+        super(status, title);
         this.director = director;
         this.durationMinutes = durationMinutes;
+    }
+
+    @Override
+    public String toCSV() {
+        // DVDs leave isbn, author, and genre empty
+        return itemId + "," + status + ",DVD," + title + "," +
+                director + "," + durationMinutes;
     }
 }

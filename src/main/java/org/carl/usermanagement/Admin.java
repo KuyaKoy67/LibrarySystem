@@ -36,4 +36,10 @@ public class Admin extends User implements Reportable {
                 .toList();
         System.out.println(lostItems);
     }
+
+    @Override
+    public String toCSV() {
+        return userId + "," + name + ",ADMIN," + gender + "," +
+                getBorrowedIdsAsString() + ",,";
+    }
 }

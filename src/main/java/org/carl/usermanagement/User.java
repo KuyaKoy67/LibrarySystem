@@ -22,11 +22,27 @@ public abstract class User {
 
     private static int nextId = 1;
 
-    public User(String userId, String name, Gender gender) {
+Im    public User(String name, Gender gender) {
         this.userId = String.format("%04d", nextId++);
         this.name = Validation.isValidName(name) ? name : null;
         this.borrowedItems = new ArrayList<>();
         this.gender = gender;
+    }
+
+    public abstract boolean borrowItem(Item item);
+
+    public abstract boolean returnItem(Item item);
+
+    public abstract String toCSV();
+
+    public String getBorrowedIdsAsString() {
+        if (borrowedItems == null || borrowedItems.isEmpty()) return "";
+        String ids = "";
+        for (int i = 0; i < borrowedItems.size(); i++) {
+            ids += borrowedItems.get(i).getItemId();
+            if (i < borrowedItems.size() - 1) ids += ";";
+        }
+        return ids;
     }
 
     public enum Gender {
