@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.carl.itemmanagement.Item;
+import org.carl.other.LibraryException;
 import org.carl.other.Validation;
 
 import java.util.ArrayList;
@@ -44,9 +45,9 @@ public abstract class User {
         }
     }
 
-    public abstract boolean borrowItem(Item item);
+    public abstract void borrowItem(Item item) throws LibraryException;
 
-    public abstract boolean returnItem(Item item);
+    public abstract void returnItem(Item item) throws LibraryException;
 
     public abstract String toCSV();
 

@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.carl.itemmanagement.Item;
 import org.carl.other.Constants;
+import org.carl.other.LibraryException;
 
 import java.util.List;
 
@@ -24,39 +25,33 @@ public class Teacher extends User {
     /**
      * borrows an item as a teacher.
      * @param item the item to be borrowed
-     * @return the boolean value that determines if the item has been successfully
-     * borrowed
      */
     @Override
-    public boolean borrowItem(Item item) {
-        if (this.borrowedItems.contains(item) && item.getStatus() == Item.Status.IN_STORE) {
-            if (this.borrowingLimit <= this.borrowedItems.size()) {
-                System.out.println("This item has already been borrowed, or the limit has been surpassed");
-                return false;
-            }
-        } else {
-            item.setStatus(Item.Status.BORROWED);
-            borrowedItems.add(item);
+    public void borrowItem(Item item) throws LibraryException {
+        if (item.getStatus() != Item.Status.IN_STORE) {
+            throw new LibraryException("This item is currently unavailable.");
         }
-        return true;
+
+        if (this.borrowedItems.size() >= this.borrowingLimit) {
+            throw new LibraryException("Teacher borrowing limit reached.");
+        }
+
+        item.setStatus(Item.Status.BORROWED);
+        borrowedItems.add(item);
     }
 
     /**
      * returns an item as a teacher.
      * @param item the item to be returned
-     * @return the boolean value that determines if the item has been successfully
-     * returned
      */
     @Override
-    public boolean returnItem(Item item) {
-        if (!this.borrowedItems.contains(item) && item.getStatus() == Item.Status.BORROWED) {
-            System.out.println("This item was not borrowed");
-            return false;
+    public void returnItem(Item item) throws LibraryException {
+        if (!this.borrowedItems.contains(item)) {
+            throw new LibraryException("Operation failed: This item is not in your borrowed list.");
         }
 
         item.setStatus(Item.Status.IN_STORE);
         borrowedItems.remove(item);
-        return true;
     }
 
     @Override
