@@ -38,6 +38,42 @@ public class Admin extends User implements Reportable {
     }
 
     @Override
+    public boolean borrowItem(Item item) {
+        if (item.getStatus() == Item.Status.IN_STORE) {
+            if (this.borrowedItems.contains(item)) {
+                System.out.println("Item cannot be borrowed. Check if it is already in " +
+                        "the admin's list");
+                return false;
+            }
+            item.setStatus(Item.Status.BORROWED);
+            borrowedItems.add(item);
+            return true;
+
+        } else {
+            System.out.println("Item has already been borrowed");
+            return false;
+        }
+    }
+
+    @Override
+    public boolean returnItem(Item item) {
+        if (item.getStatus() == Item.Status.BORROWED) {
+            if (!this.borrowedItems.contains(item)) {
+                System.out.println("Item cannot be returned. It is not in the admin's" +
+                        "list");
+                return false;
+            }
+            item.setStatus(Item.Status.IN_STORE);
+            borrowedItems.remove(item);
+            return true;
+
+        } else {
+            System.out.println("Item is not borrowed.");
+            return false;
+        }
+    }
+
+    @Override
     public String toCSV() {
         return userId + "," + name + ",ADMIN," + gender + "," +
                 getBorrowedIdsAsString() + ",,";
