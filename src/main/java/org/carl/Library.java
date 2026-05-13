@@ -194,6 +194,18 @@ public class Library {
         return null;
     }
 
+    private User.Gender convertGender(String gender) {
+        if (gender == null) {
+            return null;
+        }
+
+        return switch (gender.toUpperCase()) {
+            case "MALE" -> User.Gender.MALE;
+            case "FEMALE" -> User.Gender.FEMALE;
+            default -> null;
+        };
+    }
+
     /**
      * helper method that checks the status of the item and converts the string to Item.Status
      * @param status the string status
