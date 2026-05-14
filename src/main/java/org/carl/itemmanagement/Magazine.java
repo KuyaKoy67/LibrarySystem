@@ -11,7 +11,6 @@ import org.carl.other.Validation;
 @Getter
 @Setter
 public class Magazine extends Item {
-    private String title;
     private int issueNumber;
     private String publisher;
 

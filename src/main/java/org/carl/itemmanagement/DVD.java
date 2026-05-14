@@ -10,7 +10,6 @@ import lombok.ToString;
 @Setter
 @Getter
 public class DVD extends Item {
-    private String title;
     private String director;
     private int durationMinutes;
 

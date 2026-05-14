@@ -12,7 +12,6 @@ import org.carl.other.Validation;
 @Getter
 public class Book extends Item {
     private String ISBN;
-    private String title;
     private String author;
     private Genre genre;
 
