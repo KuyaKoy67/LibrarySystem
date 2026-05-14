@@ -7,6 +7,7 @@ import org.carl.itemmanagement.Item;
 import org.carl.itemmanagement.Magazine;
 import org.carl.other.Constants;
 import org.carl.other.LibraryException;
+import org.carl.other.TypeConverter;
 import org.carl.usermanagement.Admin;
 import org.carl.usermanagement.Student;
 import org.carl.usermanagement.Teacher;
@@ -144,27 +145,24 @@ public class Library {
                 String id = infos[0];
                 String statusSTR = infos[1];
                 Item.Status status = convertStatus(statusSTR);
-
                 String itemType = infos[2];
+                String title = infos[3];
 
-                String ISBN; String title; String author; String genre;
+                String ISBN; String author; Book.Genre genre;
                 int issueNumber; String publisher; String director; int durationMinutes;
                 switch (itemType) {
                     case "BOOK" -> {
-                        title = infos[3];
                         ISBN = infos[4];
                         author = infos[5];
-                        genre = infos[6];
-                        this.items.add(new Book(status, title, ISBN, author, convertGenre(genre)));
+                        genre = TypeConverter.convertGenre(infos[6]);
+                        this.items.add(new Book(status, title, ISBN, author, genre));
                     }
                     case "MAGAZINE" -> {
-                        title = infos[3];
                         issueNumber = Integer.parseInt(infos[4]);
                         publisher = infos[5];
                         this.items.add(new Magazine(status, title, issueNumber, publisher));
                     }
                     case "DVD" -> {
-                        title = infos[3];
                         director = infos[4];
                         durationMinutes = Integer.parseInt(infos[5]);
                         this.items.add(new DVD(status, title, director, durationMinutes));

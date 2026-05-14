@@ -77,6 +77,6 @@ public class Admin extends User implements Reportable {
     @Override
     public String toCSV() {
         return userId + "," + name + ",ADMIN," + gender + "," +
-                getBorrowedIdsAsString() + ",,";
+                getBorrowedIdsAsString() + ",";
     }
 }
