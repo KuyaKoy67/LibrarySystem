@@ -1,7 +1,12 @@
 package org.carl;
 
 
+import org.carl.itemmanagement.Item;
 import org.carl.other.LibraryException;
+import org.carl.usermanagement.User;
+
+import java.util.List;
+import java.util.Scanner;
 
 
 public class Main {
@@ -10,10 +15,9 @@ public class Main {
 
     public static void main(String[] args) {
         library.loadData();
-
+        System.out.println("WELCOME TO THE LIBRARY MANAGEMENT SYSTEM\n");
         while (true) {
-            System.out.println("\n" + "WELCOME TO THE LIBRARY MANAGEMENT SYSTEM\n"
-            + "Please select an option: \n" +
+            System.out.println("Please select an option: \n" +
                     "1. Search | 2. Borrow | 3. Return | 4. Exit");
             String choice = scanner.nextLine();
 
@@ -26,17 +30,27 @@ public class Main {
             }
         }
     }
-    
+
+    /**
+     * helper method that, when called, searches the item that is being looked for
+     */
     private static void runSearch() {
         System.out.print("Keyword: ");
         String query = scanner.nextLine();
         List<Item> found = library.searchStream(query);
+
+        if (found.isEmpty()) {
+            System.out.println("Not found... try again?");
+        }
 
         for (Item it : found) {
             System.out.println(it.getItemId() + ": " + it.getTitle());
         }
     }
 
+    /**
+     * helper method that, when called, borrows an item
+     */
     private static void runBorrow() {
         User user = selectUser();
         Item item = selectItem();
@@ -51,6 +65,9 @@ public class Main {
         }
     }
 
+    /**
+     * helper method that, when called, returns an item
+     */
     private static void runReturn() {
         User user = selectUser();
         if (user == null || user.getBorrowedItems().isEmpty()) return;
@@ -64,12 +81,20 @@ public class Main {
         }
     }
 
+    /**
+     * Chooses a user
+     * @return the selected user
+     */
     private static User selectUser() {
         System.out.print("Enter User Name: ");
         String name = scanner.nextLine();
         return library.getUsers().get(name); // Assumes keys are names in your Map
     }
 
+    /**
+     * Chooses an item
+     * @return the item
+     */
     private static Item selectItem() {
         System.out.print("Enter Item Title: ");
         String title = scanner.nextLine();
