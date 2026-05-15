@@ -128,7 +128,7 @@ public class Library {
 
                     return false;
                 })
-                .distinct() // can we use distinct?
+                .distinct()
                 .collect(Collectors.toList());
     }
 
