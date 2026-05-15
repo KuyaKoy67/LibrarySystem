@@ -1,0 +1,6 @@
+UserID, Name, UserType (STUDENT/TEACHER/ADMIN), Gender, BorrowedItemIDs (separated by ;)
+0001,Alice Smith,STUDENT,FEMALE,0002
+0002,Bob Johnson,STUDENT,MALE,0001
+0003,Charlie Davis,TEACHER,MALE,
+0004,Santos Carl Nathan,ADMIN,MALE,
+0005,Professor Miller,TEACHER,FEMALE,0003;0004

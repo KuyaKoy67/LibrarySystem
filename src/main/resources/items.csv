@@ -1,0 +1,7 @@
+itemId,status,itemType,title,detail1,detail2,detail3
+0001,IN_STORE,BOOK,The Great Gatsby,9780743273565,F. Scott Fitzgerald,FANTASY
+0002,BORROWED,BOOK,Clean Code,9780132350884,Robert C. Martin,SELF_HELP
+0003,IN_STORE,MAGAZINE,National Geographic,202401,NG Society
+0004,BORROWED,MAGAZINE,Scientific American,202405,Springer Nature
+0005,IN_STORE,DVD,Inception,Christopher Nolan,148
+0006,LOST,DVD,Interstellar,Christopher Nolan,169
