@@ -1,0 +1,34 @@
+LIBRARY MANAGEMENT SYSTEM - FINAL REPORT: METHOD SUMMARY
+Student: Santos Carl Nathan
+ID: 2540394
+
+1. CORE SYSTEM METHODS (Library Class)
+--------------------------------------
+• loadData(): Synchronizes the application state by reading stored Item and User data from CSV files into memory.
+• backupData(): Ensures data persistence by writing the current state of the library collections back to CSV files.
+• searchStream(query): Implements a functional programming approach using Java Streams to filter items by title.
+• searchRecursive(query, items, index): Performs an index-based search through the item list using recursion to find title matches.
+• addItem(item) / removeItem(item): Manages the primary collection of library resources, ensuring unique identification.
+
+2. USER INTERACTION METHODS (User & Subclasses)
+-----------------------------------------------
+• borrowItem(item): Polymorphic method that validates availability and applies specific borrowing limits (e.g., Student vs. Teacher).
+• returnItem(item): Updates item status back to 'IN_STORE' and removes the reference from the user's borrowed list.
+• generateReport(items): Admin-specific method that iterates through the catalog to produce a status summary of all resources.
+
+3. DATA VALIDATION METHODS (Validation Class)
+---------------------------------------------
+• isValidISBN(isbn): Uses string manipulation to verify if a sequence matches the 10 or 13-digit standard for books.
+• isValidName(name): Ensures user and author names contain valid characters and meet length requirements.
+• isValidIssueNumber(num): Validates that magazine issues are positive integers to prevent data corruption.
+• isUniqueID(id, list): Checks a proposed ID against existing entries to maintain database integrity.
+
+4. ERROR HANDLING (Custom Exceptions)
+-------------------------------------
+• LibraryException: The parent checked exception used to signal business rule violations across the system.
+
+5. TYPE CONVERTERS AND HELPER METHODS
+-------------------------------------
+• convertStatus(String) / convertGender(String) / convertGenre(String): Mapping methods that converts raw CSV strings into Java Enum types.
+• getBorrowedIdsAsString(): Helper method that iterates through the borrowed list to create a comma-separated string of IDs for saving.
+• toCSV(): Abstract in Item, implemented in each subclass. Converts the object's attributes into a single comma-separated string for database persistence.
