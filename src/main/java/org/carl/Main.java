@@ -29,6 +29,8 @@ public class Main {
                 case "3" -> runReturn();
             }
         }
+
+        System.out.println("Thank you! Come again!");
     }
 
     /**
