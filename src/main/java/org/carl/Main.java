@@ -58,9 +58,9 @@ public class Main {
         if (user != null && item != null) {
             try {
                 user.borrowItem(item);
-                System.out.println("Success!");
+                System.out.println("Success!\n");
             } catch (LibraryException e) {
-                System.out.println("Failed: " + e.getMessage());
+                System.out.println("Failed: " + e.getMessage() + "\n");
             }
         }
     }
@@ -87,8 +87,14 @@ public class Main {
      */
     private static User selectUser() {
         System.out.print("Enter User Name: ");
-        String name = scanner.nextLine();
-        return library.getUsers().get(name); // Assumes keys are names in your Map
+        String name = scanner.nextLine().trim();
+        for (User u : library.getUsers().values()) {
+            if (u.getName().equalsIgnoreCase(name)) {
+                return u;
+            }
+        }
+        System.out.println("User '" + name + "' not found.");
+        return null;
     }
 
     /**
@@ -97,9 +103,13 @@ public class Main {
      */
     private static Item selectItem() {
         System.out.print("Enter Item Title: ");
-        String title = scanner.nextLine();
-        return library.getItems().stream()
-                .filter(i -> i.getTitle().equalsIgnoreCase(title))
-                .findFirst().orElse(null);
+        String title = scanner.nextLine().trim();
+        for (Item it : library.getItems()) {
+            if (it.getTitle().equalsIgnoreCase(title)) {
+                return it;
+            }
+        }
+        System.out.println("Item '" + title + "' not found.");
+        return null;
     }
 }

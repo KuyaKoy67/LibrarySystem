@@ -193,7 +193,7 @@ public class Library {
                 String name = infos[1];
                 String userType = infos[2];
                 User.Gender gender = convertGender(infos[3]);
-                String borrowedItemsIds = infos[4];
+                String borrowedItemsIds = (infos.length > 4) ? infos[4] : "";
 
                 User currentUser;
                 switch (userType) {
