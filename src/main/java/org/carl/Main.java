@@ -68,7 +68,7 @@ public class Main {
     }
 
     /**
-     * helper method that, when called, returns an item
+     * helper method that, when called, returns all item
      */
     private static void runReturn() {
         User user = selectUser();
