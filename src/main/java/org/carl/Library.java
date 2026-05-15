@@ -139,6 +139,11 @@ public class Library {
         File itemFile = new File(Constants.ITEMS_CSV_PATH);
 
         try (Scanner input = new Scanner(itemFile)) {
+
+            if (input.hasNextLine()) {
+                input.nextLine();
+            }
+
             while (input.hasNextLine()) {
                 String row = input.nextLine();
                 String[] infos = row.split(",");
@@ -176,6 +181,11 @@ public class Library {
         File userFile = new File(Constants.USERS_CSV_PATH);
 
         try (Scanner input = new Scanner(userFile)) {
+
+            if (input.hasNextLine()) {
+                input.nextLine();
+            }
+
             while (input.hasNextLine()) {
                 String row = input.nextLine();
                 String[] infos = row.split(",");
