@@ -4,31 +4,15 @@ ID: 2540394
 
 1. CORE SYSTEM METHODS (Library Class)
 --------------------------------------
-• loadData(): Loads all data into the console, making it visible
-• backupData(): Uploads all data back into the files
-• searchStream(query): Using java streams, searches a list of items
-• searchRecursive(query, items, index): Using recursion, searches a list of items
-• addItem(item) / removeItem(item): Adds or removes an item of the library
 
 2. USER INTERACTION METHODS (User & Subclasses)
 -----------------------------------------------
-• borrowItem(item): Method that allows the user to borrow the item (polymorphic)
-• returnItem(item): Method that allows the user to return the item (polymorphic)
-• generateReport(items): Admin-specific method that iterates through the information to produce a status summary of all resources.
 
 3. DATA VALIDATION METHODS (Validation Class)
 ---------------------------------------------
-• isValidISBN(isbn): Ensures the ISBN is valid (length is 13 numbers)
-• isValidName(name): Ensures user and author names contain valid characters
-• isValidIssueNumber(num): Validates that magazine numbers are positive integers
-• isUniqueID(id, list): Checks if there are no id clones
 
 4. ERROR HANDLING (Custom Exceptions)
 -------------------------------------
-• LibraryException: The general exception used to show that a limit has been exceeded or if the status of an item is not correspondent to the action
 
 5. TYPE CONVERTERS AND HELPER METHODS
 -------------------------------------
-• convertStatus(String) / convertGender(String) / convertGenre(String): Method that converts a string into enum translation
-• getBorrowedIdsAsString(): Helper method that gets all Ids from a group of string that are ids
-• toCSV(): Abstract in Item, implemented in each subclass. Converts each field of an item to CSV format
